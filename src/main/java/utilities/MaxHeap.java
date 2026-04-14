@@ -2,6 +2,7 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Implementación de una estructura de datos Max-Heap.
@@ -15,12 +16,11 @@ public class MaxHeap<E> {
 
     /**
      * Constructor del Max-Heap.
-     * @param max La capacidad máxima inicial esperada.
      * @param cmp El comparador utilizado para establecer quién tiene más puntos.
      */
-    public MaxHeap(int max, Comparator<E> cmp) {
+    public MaxHeap(Comparator<E> cmp) {
         this.n = 0;
-        this.datos = new ArrayList<>(max);
+        this.datos = new ArrayList<>();
         this.cmp = cmp;
     }
 
@@ -126,7 +126,38 @@ public class MaxHeap<E> {
     /**
      * Utilidad para saber si el Leaderboard está vacío.
      */
-    public boolean estaVacio() {
+    public boolean isEmpty() {
         return n == 0;
+    }
+
+    public List<E> obtenerTopN(int n){
+        ArrayList<E> topN= new ArrayList<>();
+        //caso base: lista vacía
+        if(this.isEmpty())return topN;
+
+        //1. se realiza una copia del heap actual
+        MaxHeap<E> heapTemporal = new MaxHeap<>(this.cmp);
+
+        //2. uso la función de construir heap con los datos del original
+        heapTemporal.construirHeap(new ArrayList<>(this.datos));
+
+        //3. obtengo el maximo a extraer
+        int cantidadAExtraer = Math.min(n,heapTemporal.n);
+
+        //4. Desencolar N veces (o hasta que quede vacío el heap) en la copia
+        for(int i =0; i< cantidadAExtraer;i++){
+            //obtenemos la raíz que será el dato mayor
+            topN.add(heapTemporal.desencolar());
+        }
+        return topN;
+    }
+
+    public void construirHeap(ArrayList<E> Amalo){
+        this.datos = new ArrayList<>(Amalo);
+        this.n = datos.size();
+        // Se ajustan los nodos desde el último padre hasta la raíz
+        for (int i = n/2 - 1; i >= 0; i--) {
+            this.autoAjuste(i);
+        }
     }
 }

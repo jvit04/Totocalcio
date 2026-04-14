@@ -10,469 +10,469 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="451.0" maxWidth="654.0" minHeight="400.0" minWidth="600.0" prefHeight="451.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TotocalcioController">
-   <children>
-      <ImageView fitHeight="451.0" fitWidth="654.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@imagenes/totocalcioLienzo.png" />
-         </image>
-      </ImageView>
-      <HBox layoutY="68.0" prefHeight="382.0" prefWidth="654.0">
-         <children>
-            <AnchorPane prefHeight="382.0" prefWidth="418.0">
-               <children>
-                  <ImageView fitHeight="451.0" fitWidth="436.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/totocalcioGioco.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="131.0" layoutY="7.0" text="DETTAGLI DELLE FINALI MONDIALI" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="39.0" layoutY="72.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="96.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="152.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="39.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="96.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="152.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="38.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="95.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="151.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="263.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="319.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="376.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="264.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="320.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="377.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="264.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="320.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="377.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="158.0" layoutY="289.0" text="SEZIONE BONUS: Serie A" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="54.0" layoutY="28.0" text="19 DE JUNIO DE 1938">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="54.0" layoutY="51.0" text="Italia">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="107.0" layoutY="51.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="138.0" layoutY="51.0" text="Hungria">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="26.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/it.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="183.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/hu.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="38.0" layoutY="97.0" text="1= Italia gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="97.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="146.0" layoutY="97.0" text="2 = Hungria gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="56.0" layoutY="115.0" text="21 DE JUNIO DE 1970">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="55.0" layoutY="139.0" text="Italia">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="108.0" layoutY="139.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="143.0" layoutY="139.0" text="Brasil">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="27.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/it.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="180.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/br.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="38.0" layoutY="184.0" text="1= Italia gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="184.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="149.0" layoutY="184.0" text="2 = Brasil gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="283.0" layoutY="202.0" text="9 DE JULIO DE 2006">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="279.0" layoutY="226.0" text="Italia">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="333.0" layoutY="226.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="363.0" layoutY="226.0" text="Francia">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="251.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/it.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="406.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/fr.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="263.0" layoutY="270.0" text="1= Italia gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="324.0" layoutY="270.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="372.0" layoutY="270.0" text="2 = Francia gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="57.0" layoutY="202.0" text="30 DE JULIO DE 1930">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="48.0" layoutY="226.0" text="Argentina">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="107.0" layoutY="226.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="136.0" layoutY="226.0" text="Uruguay">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="22.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/ar.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="183.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/uy.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="30.0" layoutY="270.0" text="1= Argentina gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="98.0" layoutY="270.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="144.0" layoutY="270.0" text="2 = Uruguay gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="280.0" layoutY="115.0" text="30 DE JULIO DE 1966">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="272.0" layoutY="139.0" text="Inglaterra">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="333.0" layoutY="139.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="357.0" layoutY="139.0" text="Alemania">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="244.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/gb-eng.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="410.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/de.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="257.0" layoutY="184.0" text="1= Inglaterra gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="323.0" layoutY="184.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="368.0" layoutY="184.0" text="2 = Alemania gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="266.0" layoutY="28.0" text="18 DE DICIEMBRE DE 2022">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="271.0" layoutY="51.0" text="Argentina">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="332.0" layoutY="51.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="362.0" layoutY="51.0" text="Francia">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="243.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/ar.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="407.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/fr.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="255.0" layoutY="97.0" text="1= Argentina gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="322.0" layoutY="97.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="370.0" layoutY="97.0" text="2 = Francia gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="33.0" layoutY="339.0" text="2 DE MARZO DE 2019">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="224.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="280.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="337.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
-                     <font>
-                        <Font name="Roboto Black" size="12.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="230.0" layoutY="312.0" text="Lazio">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="292.0" layoutY="312.0" text="vs.">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="341.0" layoutY="312.0" text="Roma">
-                     <font>
-                        <Font name="Roboto Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="70.0" fitWidth="58.0" layoutX="169.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/Lazio-logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="223.0" layoutY="355.0" text="1= Lazio gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="284.0" layoutY="355.0" text="X=Penales">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="333.0" layoutY="355.0" text="2 = Roma gana">
-                     <font>
-                        <Font name="Roboto Regular" size="7.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="40.0" layoutY="321.0" text="Derby della Capitale">
-                     <font>
-                        <Font name="Roboto Black Italic" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="381.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagenes/104.png" />
-                     </image>
-                  </ImageView>
-               </children></AnchorPane>
-            <VBox prefHeight="382.0" prefWidth="230.0" />
-         </children>
-      </HBox>
-      <Label layoutX="26.0" layoutY="23.0" text="0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="203.0" layoutY="47.0" text="&quot;LA SIMULAZIONE DEL MONDIALE IN UN TOCCO&quot;" textFill="WHITE">
-         <font>
-            <Font name="Roboto Black" size="12.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <ImageView fitHeight="451.0" fitWidth="654.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@imagenes/totocalcioLienzo.png" />
+            </image>
+        </ImageView>
+        <HBox layoutY="68.0" prefHeight="382.0" prefWidth="654.0">
+            <children>
+                <AnchorPane prefHeight="382.0" prefWidth="418.0">
+                    <children>
+                        <ImageView fitHeight="451.0" fitWidth="436.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/totocalcioGioco.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="131.0" layoutY="7.0" text="DETTAGLI DELLE FINALI MONDIALI" textFill="WHITE">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="39.0" layoutY="72.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="96.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="152.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="39.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="96.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="152.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="38.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="95.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="151.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="263.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="319.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="376.0" layoutY="73.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="264.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="320.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="377.0" layoutY="160.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="264.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="320.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="377.0" layoutY="246.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="158.0" layoutY="289.0" text="SEZIONE BONUS: Serie A" textFill="WHITE">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="54.0" layoutY="28.0" text="19 DE JUNIO DE 1938">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="54.0" layoutY="51.0" text="Italia">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="107.0" layoutY="51.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="138.0" layoutY="51.0" text="Hungria">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="26.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/it.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="183.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/hu.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="38.0" layoutY="97.0" text="1= Italia gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="97.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="146.0" layoutY="97.0" text="2 = Hungria gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="56.0" layoutY="115.0" text="21 DE JUNIO DE 1970">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="55.0" layoutY="139.0" text="Italia">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="108.0" layoutY="139.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="143.0" layoutY="139.0" text="Brasil">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="27.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/it.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="180.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/br.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="38.0" layoutY="184.0" text="1= Italia gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="184.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="184.0" text="2 = Brasil gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="283.0" layoutY="202.0" text="9 DE JULIO DE 2006">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="279.0" layoutY="226.0" text="Italia">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="226.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="363.0" layoutY="226.0" text="Francia">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="251.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/it.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="406.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/fr.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="263.0" layoutY="270.0" text="1= Italia gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="324.0" layoutY="270.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="372.0" layoutY="270.0" text="2 = Francia gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="57.0" layoutY="202.0" text="30 DE JULIO DE 1930">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="48.0" layoutY="226.0" text="Argentina">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="107.0" layoutY="226.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="136.0" layoutY="226.0" text="Uruguay">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="22.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/ar.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="183.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/uy.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="30.0" layoutY="270.0" text="1= Argentina gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="98.0" layoutY="270.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="144.0" layoutY="270.0" text="2 = Uruguay gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="115.0" text="30 DE JULIO DE 1966">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="272.0" layoutY="139.0" text="Inglaterra">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="139.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="357.0" layoutY="139.0" text="Alemania">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="244.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/gb-eng.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="410.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/de.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="257.0" layoutY="184.0" text="1= Inglaterra gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="323.0" layoutY="184.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="368.0" layoutY="184.0" text="2 = Alemania gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="266.0" layoutY="28.0" text="18 DE DICIEMBRE DE 2022">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="271.0" layoutY="51.0" text="Argentina">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="332.0" layoutY="51.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="362.0" layoutY="51.0" text="Francia">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="243.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/ar.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="407.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/fr.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="255.0" layoutY="97.0" text="1= Argentina gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="322.0" layoutY="97.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="370.0" layoutY="97.0" text="2 = Francia gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="339.0" text="2 DE MARZO DE 2019">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="224.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="1">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="280.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="X">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="337.0" layoutY="331.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="40.0" text="2">
+                            <font>
+                                <Font name="Roboto Black" size="12.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="230.0" layoutY="312.0" text="Lazio">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="292.0" layoutY="312.0" text="vs.">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="341.0" layoutY="312.0" text="Roma">
+                            <font>
+                                <Font name="Roboto Regular" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="70.0" fitWidth="58.0" layoutX="169.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/Lazio-logo.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="223.0" layoutY="355.0" text="1= Lazio gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="284.0" layoutY="355.0" text="X=Penales">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="333.0" layoutY="355.0" text="2 = Roma gana">
+                            <font>
+                                <Font name="Roboto Regular" size="7.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="321.0" text="Derby della Capitale">
+                            <font>
+                                <Font name="Roboto Black Italic" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="381.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@imagenes/104.png" />
+                            </image>
+                        </ImageView>
+                    </children></AnchorPane>
+                <VBox prefHeight="382.0" prefWidth="230.0" />
+            </children>
+        </HBox>
+        <Label layoutX="26.0" layoutY="23.0" text="0">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="203.0" layoutY="47.0" text="&quot;LA SIMULAZIONE DEL MONDIALE IN UN TOCCO&quot;" textFill="WHITE">
+            <font>
+                <Font name="Roboto Black" size="12.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

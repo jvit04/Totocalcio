@@ -1,9 +1,9 @@
 package utilities;
 //En esta clase se guardan las rutas de archivo, usuario y contraseña de la base y el url de la base de datos.
 public class Paths {
-    public static final String TotocalcioApp = "/mainTotocalcio.fxml";
+    public static final String TotocalcioApp = "/mainTotocalcio1.fxml";
     public static final String ImagenIconoApp = "/imagenes/logoTotocalcio.png";
-    public static final String UrlBaseDatos= "jdbc:postgresql://localhost:5432/FractaliaOLAP";
+    public static final String UrlBaseDatos= "jdbc:postgresql://localhost:5432/Totocalcio";
     //Explicación de esta parte (José Viteri):
     //Al querer ejecutar la rama de mi compañero como el tiene sus propias credenciales en la base, esto genero error
     //ya que las credenciales no son las mismas, se buscó una solución para que podamos ejecutar
@@ -17,5 +17,5 @@ public class Paths {
             ? System.getenv("DB_PASSWORD")
             : "123456";
 //Usar este comando de git: git config --global core.autocrlf true
-    //si sale este mensaje: warning: in the working copy of 'src/main/resources/DashboardOperaciones.fxml', LF will be replaced by CRLF the next time Git touches it
+    //si sale este mensaje: warning: in the working copy of 'src/main/resources/mainTotocalcio.fxml', LF will be replaced by CRLF the next time Git touches it
 }

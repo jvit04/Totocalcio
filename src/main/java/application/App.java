@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import utilities.Paths;
 
@@ -19,7 +20,7 @@ public class App extends Application {
 //metodo start de java FX que permite iniciar la aplicación
     @Override
     public void start(Stage stage) throws IOException {
-        AnchorPane loader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Paths.TotocalcioApp)));
+        StackPane loader = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Paths.TotocalcioApp)));
         Scene scene = new Scene(loader);
         stage.setScene(scene);
         stage.setResizable(false);
