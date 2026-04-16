@@ -1,7 +1,10 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import utilities.ComparadorParticipante;
@@ -18,8 +21,17 @@ import java.util.List;
 public class TotocalcioController {
     ComparadorParticipante cmp=new ComparadorParticipante();
     MaxHeap<Participante> leaderboard =  new MaxHeap<>(cmp);
+    @FXML
+    private AnchorPane idPantallaCarga;
+    @FXML
+    private Button idBotonIniziare;
+    @FXML
+    private VBox vboxListaRanking;
+
+
     public void initialize(){
         cargarLeaderboard();
+            idPantallaCarga.setVisible(true);
     }
     public void cargarLeaderboard(){
         //llamo a la función de la base de datos
@@ -42,8 +54,7 @@ public class TotocalcioController {
             System.out.println("Error al cargar la base de datos :( :" + e.getMessage());
         }
     }
-    @FXML
-    private VBox vboxListaRanking;
+
 
     public void actualizarLeaderboardUI() {
         // 1. Limpiar la interfaz previa
@@ -76,4 +87,9 @@ public class TotocalcioController {
         }
     }
 
+
+    @FXML
+    void ocultarPantalla(ActionEvent event) {
+        idPantallaCarga.setVisible(false);
+    }
 }
