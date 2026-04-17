@@ -235,7 +235,7 @@
                            <font>
                               <Font name="Roboto Black" size="18.0" />
                            </font></Button>
-                        <VBox layoutX="58.0" layoutY="57.0" prefHeight="377.0" prefWidth="343.0" />
+                        <VBox fx:id="vboxListaRanking" layoutX="58.0" layoutY="46.0" prefHeight="377.0" prefWidth="343.0" />
                         <Label layoutX="64.0" layoutY="12.0" text="LEADERBOARD: MIGLIORI GIOCATORI" textFill="WHITE">
                            <font>
                               <Font name="Roboto Black" size="19.0" />
@@ -251,7 +251,7 @@
                     </children>
                 </HBox>
 
-                            <Label fx:id="lblConcorso" layoutX="37.0" layoutY="42.0" prefWidth="100.0" text="999" textAlignment="CENTER">
+                            <Label fx:id="lblConcorso" alignment="CENTER" layoutX="27.0" layoutY="39.0" prefWidth="100.0" text="999" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="48.0" />
                     </font>
@@ -289,5 +289,17 @@
                </font>
             </Label>
          </children></AnchorPane>
+        <HBox fx:id="panelNotificacion" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="60.0" prefWidth="500.0" styleClass="notificacion" stylesheets="@css/styles.css" visible="false" StackPane.alignment="TOP_CENTER">
+            <children>
+                <Label fx:id="lblNotificacion" styleClass="notificacion" stylesheets="@css/styles.css" text="Mensaje de prueba" textFill="WHITE">
+                    <font>
+                        <Font name="Roboto Black" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+            <StackPane.margin>
+                <Insets top="30.0" />
+            </StackPane.margin>
+        </HBox>
     </children>
 </StackPane>

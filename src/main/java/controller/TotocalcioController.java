@@ -33,7 +33,8 @@ public class TotocalcioController {
 
     //Se creará un temporizador para el reinicio de la app
     private PauseTransition temporizadorReinicio;
-
+    // Un temporizador exclusivo para ocultar la notificación
+    private PauseTransition temporizadorNotificacion;
     @FXML
     private Button btnSiguienteJugador;
 
@@ -108,15 +109,21 @@ public class TotocalcioController {
     @FXML
     private Button btn_6_X;
     @FXML
+    private HBox panelNotificacion;
+    @FXML
+    private Label lblNotificacion;
+    @FXML
     private Button btn_enviar_apuesta;
     @FXML
     private Label lblConcorso;
 
     public void initialize(){
         cargarLeaderboard();
+        actualizarLeaderboardUI();
         idPantallaCarga.setVisible(true);
         numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
+
     }
     public void cargarLeaderboard(){
         //llamo a la función de la base de datos
@@ -145,18 +152,42 @@ public class TotocalcioController {
         // 1. Limpiar la interfaz previa
         vboxListaRanking.getChildren().clear();
         //2. Obtener la lista de los mejores N participantes
-        List<Participante> topParticipantes = leaderboard.obtenerTopN(5);
+        List<Participante> topParticipantes = leaderboard.obtenerTopN(10);
 
         int puesto = 1;
         for (Participante p : topParticipantes) {
-            // 3. Crear el contenedor de la fila (HBox para nombre y puntos)
+            // 3. Crear el contenedor de la fila
             HBox fila = new HBox();
             fila.setSpacing(20);
-            fila.setStyle("-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;");
+
+            // Variables para guardar el estilo dinámico
+            String estiloFila = "-fx-padding: 10; -fx-background-radius: 5; -fx-border-radius: 5; ";
+            String colorTextoPuesto = "-fx-font-weight: bold; ";
+
+            // Lógica del Podio (Oro, Plata, Bronce)
+            if (puesto == 1) {
+                // ORO: Fondo amarillo muy suave, borde dorado
+                estiloFila += "-fx-background-color: #FFFBE6; -fx-border-color: #FFD700; -fx-border-width: 2px;";
+                colorTextoPuesto += "-fx-text-fill: #B8860B;"; // Oro oscuro para contraste
+            } else if (puesto == 2) {
+                // PLATA: Fondo gris muy suave, borde plateado
+                estiloFila += "-fx-background-color: #F8F9FA; -fx-border-color: #8f8f8f; -fx-border-width: 2px;";
+                colorTextoPuesto += "-fx-text-fill: #6C757D;"; // Gris oscuro
+            } else if (puesto == 3) {
+                // BRONCE: Fondo naranja muy suave, borde bronce
+                estiloFila += "-fx-background-color: #FFF3E0; -fx-border-color: #CD7F32; -fx-border-width: 2px;";
+                colorTextoPuesto += "-fx-text-fill: #8B4513;"; // Café oscuro
+            } else {
+                // RESTO: Blanco normal sin borde
+                estiloFila += "-fx-background-color: white;";
+                colorTextoPuesto += "-fx-text-fill: #1a2b4c;"; // Azul de tu diseño
+            }
+
+            fila.setStyle(estiloFila);
 
             // 4. Crear los Labels
             Label lblPuesto = new Label("#" + puesto);
-            lblPuesto.setStyle("-fx-font-weight: bold; -fx-text-fill: #1a2b4c;");
+            lblPuesto.setStyle(colorTextoPuesto); // Aplicamos el color del metal al número
 
             Label lblNombre = new Label(p.getNombre());
             lblNombre.setPrefWidth(150);
@@ -224,20 +255,7 @@ private void limpiarBotonesDeLaFila(int fila){
         for (int i = 0; i < apuestasUsuario.length; i++) {
             if(apuestasUsuario[i]==null){
                 //todo por mejorar
-                String mensaje = "<html>" +
-                        "<body style='width: 250px; font-family: sans-serif;'>" +
-                        "<h2 style='color: #d35400; margin-bottom: 0;'>¡Atención!</h2>" +
-                        "<hr>" +
-                        "<p style='font-size: 12px;'>Se ha detectado un campo vacío en el formulario.</p>" +
-                        "<p style='font-size: 14px;'><b>Fila del partido:</b> <span style='color: red;'>" + i + "</span></p>" +
-                        "<br><p style='font-size: 10px; color: gray;'>Por favor, completa la información para continuar.</p>" +
-                        "</body></html>";
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        mensaje,
-                        "Validación de Registro",
-                        JOptionPane.WARNING_MESSAGE);
+                mostrarNotificacion("¡Atención! Te falta llenar el partido " + (i + 1), true);
                 return;
             }
         }
@@ -253,7 +271,7 @@ private void limpiarBotonesDeLaFila(int fila){
                 }
             }
         }
-//todo por mejorar
+
         //3.Generación de usuario y persistencia
         String nombreJugador = NameGenerator.generarNombreAleatorio();
         ConexionBD.guardarParticipante(nombreJugador,puntosObtenidos);
@@ -261,25 +279,9 @@ private void limpiarBotonesDeLaFila(int fila){
         leaderboard.insertar(participante);
         actualizarLeaderboardUI();
 
-        String mensajeExito = "<html>" +
-                "<body style='width: 220px; font-family: sans-serif; text-align: center;'>" +
-                "<h2 style='color: #27ae60; margin-bottom: 5px;'>¡Envío Exitoso!</h2>" +
-                "<p style='font-size: 11px; color: #7f8c8d;'>La apuesta se ha registrado correctamente.</p>" +
-                "<hr style='border: 0; border-top: 1px solid #eee;'>" +
-                "<div style='background-color: #f9f9f9; padding: 10px; border-radius: 5px;'>" +
-                "<p style='margin: 0;'>Jugador: <b>" + nombreJugador + "</b></p>" +
-                "<p style='margin: 5px 0 0 0; font-size: 16px; color: #2c3e50;'>" +
-                "Puntos: <span style='color: #27ae60; font-weight: bold;'>" + puntosObtenidos + "</span>" +
-                "</p>" +
-                "</div>" +
-                "<br></body></html>";
+        String mensajeExito = "¡Éxito! " + nombreJugador + " logró " + puntosObtenidos + " pts.";
+        mostrarNotificacion(mensajeExito, false);
 
-        JOptionPane.showMessageDialog(
-                null,
-                mensajeExito,
-                "Confirmación de Apuesta",
-                JOptionPane.INFORMATION_MESSAGE
-        );
         btn_enviar_apuesta.setVisible(false); //Oculto el botón de enviar
         btnSiguienteJugador.setVisible(true); //Muestro el botón de siguiente
 
@@ -311,6 +313,32 @@ private void limpiarBotonesDeLaFila(int fila){
     @FXML
     void accionSiguienteJugador(ActionEvent event){
         reiniciarTablero();
+    }
+
+    private void mostrarNotificacion(String mensaje, boolean esError){
+        //1. Se configura el texto
+        lblNotificacion.setText(mensaje);
+
+        //2. Se limpia los colores anteriores (¡SIN EL PUNTO!)
+        panelNotificacion.getStyleClass().removeAll("notificacion-error", "notificacion-exito");
+
+        //3. Se asigna el color correcto (¡SIN EL PUNTO!)
+        if (esError){
+            panelNotificacion.getStyleClass().add("notificacion-error");
+        }else {
+            panelNotificacion.getStyleClass().add("notificacion-exito");
+        }
+
+        //4. Se muestra en pantalla
+        panelNotificacion.setVisible(true);
+
+        //5. Se configura un temporizador para que desaparezca solo
+        if(temporizadorNotificacion!=null){
+            temporizadorNotificacion.stop();
+        }
+        temporizadorNotificacion = new PauseTransition(Duration.seconds(3));
+        temporizadorNotificacion.setOnFinished(e -> panelNotificacion.setVisible(false));
+        temporizadorNotificacion.play();
     }
 }
 

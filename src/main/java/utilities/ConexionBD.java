@@ -10,25 +10,31 @@ public class ConexionBD {
         return DriverManager.getConnection(Paths.UrlBaseDatos, Paths.USER, Paths.PASSWORD);
     }
     public static void guardarParticipante(String nombre, int puntos){
-        String query = "select fn_guardarParticipante(?,?)";
+        // En Postgres, llamar a una función con SELECT está perfecto
+        String query = "SELECT fn_guardarParticipante(?, ?)";
         try (Connection conn = conectar();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
+
             pstmt.setString(1, nombre);
             pstmt.setInt(2, puntos);
-            pstmt.executeUpdate();
+
+            // CAMBIO AQUÍ: Usamos execute() en lugar de executeUpdate()
+            pstmt.execute();
 
         } catch (SQLException e) {
             System.out.println("Error al guardar en BD: " + e.getMessage());
         }
     }
+
     public static int obtenerSiguienteConcurso(){
-        String query = "select obtenerSiguienteConcurso()";
+        String query = "SELECT obtenerSiguienteConcurso()";
         try (Connection conn = conectar();
              java.sql.Statement stmt = conn.createStatement();
              java.sql.ResultSet rs = stmt.executeQuery(query)) {
 
             if (rs.next()) {
-                return rs.getInt("siguiente_boleto");
+                // CAMBIO AQUÍ: Pedimos la columna 1 en lugar del nombre
+                return rs.getInt(1);
             }
 
         } catch (SQLException e) {
@@ -37,4 +43,5 @@ public class ConexionBD {
 
         return 1;
     }
+//Comando para reinciar los datos de la base, usar en pgAdmin: TRUNCATE TABLE participante RESTART IDENTITY;
 }

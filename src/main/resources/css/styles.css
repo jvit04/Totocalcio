@@ -100,3 +100,18 @@
     -fx-translate-y: 2px; /* Efecto de hundimiento */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 4, 0, 0, 2);
 }
+/* Diseño base de la notificación */
+.notificacion {
+    -fx-background-radius: 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);
+}
+
+/* Color para Errores / Advertencias (Rojo) */
+.notificacion-error {
+    -fx-background-color: #dc3545;
+}
+
+/* Color para Éxito (Verde) */
+.notificacion-exito {
+    -fx-background-color: #28a745;
+}
