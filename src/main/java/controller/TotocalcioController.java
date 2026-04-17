@@ -1,37 +1,122 @@
 package controller;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import utilities.ComparadorParticipante;
-import utilities.ConexionBD;
-import utilities.MaxHeap;
-import utilities.Participante;
+import javafx.util.Duration;
+import utilities.*;
+
+import javax.swing.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 public class TotocalcioController {
+    private int numeroConcursoActual = 0;
     ComparadorParticipante cmp=new ComparadorParticipante();
     MaxHeap<Participante> leaderboard =  new MaxHeap<>(cmp);
+    private String[] apuestasUsuario = new String[7];
+
+    //Este es el arreglo con los resultados históricos que el jugador debe adivinar
+    // 1938(1), 1970(2), 1930(2), 2022(X), 1966(1), 2006(X), Lazio-Roma(1)
+    private final String[] resultadosReales = {"1", "2", "2", "X", "1", "X", "1"};
+
+    //Se creará un temporizador para el reinicio de la app
+    private PauseTransition temporizadorReinicio;
+
+    @FXML
+    private Button btnSiguienteJugador;
+
     @FXML
     private AnchorPane idPantallaCarga;
     @FXML
     private Button idBotonIniziare;
     @FXML
     private VBox vboxListaRanking;
+    @FXML
+    private AnchorPane idPanelJuego;
+    @FXML
+    private Button btn_0_1;
 
+    @FXML
+    private Button btn_0_2;
+
+    @FXML
+    private Button btn_0_X;
+
+    @FXML
+    private Button btn_1_1;
+
+    @FXML
+    private Button btn_1_2;
+
+    @FXML
+    private Button btn_1_X;
+
+    @FXML
+    private Button btn_2_1;
+
+    @FXML
+    private Button btn_2_2;
+
+    @FXML
+    private Button btn_2_X;
+
+    @FXML
+    private Button btn_3_1;
+
+    @FXML
+    private Button btn_3_2;
+
+    @FXML
+    private Button btn_3_X;
+
+    @FXML
+    private Button btn_4_1;
+
+    @FXML
+    private Button btn_4_2;
+
+    @FXML
+    private Button btn_4_X;
+
+    @FXML
+    private Button btn_5_1;
+
+    @FXML
+    private Button btn_5_2;
+
+    @FXML
+    private Button btn_5_X;
+
+    @FXML
+    private Button btn_6_1;
+
+    @FXML
+    private Button btn_6_2;
+
+    @FXML
+    private Button btn_6_X;
+    @FXML
+    private Button btn_enviar_apuesta;
+    @FXML
+    private Label lblConcorso;
 
     public void initialize(){
         cargarLeaderboard();
-            idPantallaCarga.setVisible(true);
+        idPantallaCarga.setVisible(true);
+        numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
+        lblConcorso.setText(String.valueOf(numeroConcursoActual));
     }
     public void cargarLeaderboard(){
         //llamo a la función de la base de datos
@@ -59,7 +144,7 @@ public class TotocalcioController {
     public void actualizarLeaderboardUI() {
         // 1. Limpiar la interfaz previa
         vboxListaRanking.getChildren().clear();
-
+        //2. Obtener la lista de los mejores N participantes
         List<Participante> topParticipantes = leaderboard.obtenerTopN(5);
 
         int puesto = 1;
@@ -86,10 +171,146 @@ public class TotocalcioController {
             puesto++;
         }
     }
+@FXML
+public void registrarApuesta(ActionEvent event){
+    //1. Identificar que botón se presionó
+    Button botonPresionado = (Button) event.getSource();
+    String idBoton = botonPresionado.getId();
 
+    //Condición de seguridad
+    if (idBoton == null) {
+        System.out.println("Error: Al botón le falta el ID");
+        return;
+    }
 
+    //2. Extraer el número de fila (del 0 al 7) basado en el ID
+    //Se aprovechará el formato de los id de los botones. Ej: btn_fila_opción
+    //se usara un split por guion bajo "_"
+    String[] partes = idBoton.split("_");
+    //como la fila esta en la segunda posición ahora sabemos donde estamos ubicados
+    int indiceFila = Integer.parseInt(partes[1]);
+
+    //Obtenemos el texto del boton para saber que presionó el usuario
+    String valorElegido = botonPresionado.getText();
+
+    // 3. Guardamos en memoria sus apuestas
+    apuestasUsuario[indiceFila]=valorElegido;
+
+    //4. Limpiamos los botones de la fila y cambiamos el boton seleccionado
+    limpiarBotonesDeLaFila(indiceFila);
+    botonPresionado.getStyleClass().add("boton-seleccionado");
+}
+//Metodo auxiliar para limpiar los botones
+private void limpiarBotonesDeLaFila(int fila){
+        String[] opciones = { "1", "X", "2"};
+        for (String opcion:opciones){
+            //Buscamos el botón aprovechando el ID
+            String idBuscado = "#btn_" + fila + "_" + opcion;
+            Node nodo = idPanelJuego.lookup(idBuscado);
+
+            if(nodo !=null){
+                //Quitamos el estilo CSS
+                nodo.getStyleClass().remove("boton-seleccionado");
+            }
+        }
+}
     @FXML
     void ocultarPantalla(ActionEvent event) {
         idPantallaCarga.setVisible(false);
     }
+    @FXML
+    void procesarApuesta(ActionEvent event) {
+        //Verificar si el usuario respondió todas las preguntas
+        for (int i = 0; i < apuestasUsuario.length; i++) {
+            if(apuestasUsuario[i]==null){
+                //todo por mejorar
+                String mensaje = "<html>" +
+                        "<body style='width: 250px; font-family: sans-serif;'>" +
+                        "<h2 style='color: #d35400; margin-bottom: 0;'>¡Atención!</h2>" +
+                        "<hr>" +
+                        "<p style='font-size: 12px;'>Se ha detectado un campo vacío en el formulario.</p>" +
+                        "<p style='font-size: 14px;'><b>Fila del partido:</b> <span style='color: red;'>" + i + "</span></p>" +
+                        "<br><p style='font-size: 10px; color: gray;'>Por favor, completa la información para continuar.</p>" +
+                        "</body></html>";
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        mensaje,
+                        "Validación de Registro",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+        //Calculo de puntos
+        int puntosObtenidos = 0;
+
+        for (int i = 0; i < apuestasUsuario.length; i++) {
+            if(apuestasUsuario[i].equals(resultadosReales[i])){
+                if(i==6){
+                    puntosObtenidos +=7;
+                }else {
+                    puntosObtenidos+=5;
+                }
+            }
+        }
+//todo por mejorar
+        //3.Generación de usuario y persistencia
+        String nombreJugador = NameGenerator.generarNombreAleatorio();
+        ConexionBD.guardarParticipante(nombreJugador,puntosObtenidos);
+        Participante participante =  new Participante(nombreJugador,puntosObtenidos);
+        leaderboard.insertar(participante);
+        actualizarLeaderboardUI();
+
+        String mensajeExito = "<html>" +
+                "<body style='width: 220px; font-family: sans-serif; text-align: center;'>" +
+                "<h2 style='color: #27ae60; margin-bottom: 5px;'>¡Envío Exitoso!</h2>" +
+                "<p style='font-size: 11px; color: #7f8c8d;'>La apuesta se ha registrado correctamente.</p>" +
+                "<hr style='border: 0; border-top: 1px solid #eee;'>" +
+                "<div style='background-color: #f9f9f9; padding: 10px; border-radius: 5px;'>" +
+                "<p style='margin: 0;'>Jugador: <b>" + nombreJugador + "</b></p>" +
+                "<p style='margin: 5px 0 0 0; font-size: 16px; color: #2c3e50;'>" +
+                "Puntos: <span style='color: #27ae60; font-weight: bold;'>" + puntosObtenidos + "</span>" +
+                "</p>" +
+                "</div>" +
+                "<br></body></html>";
+
+        JOptionPane.showMessageDialog(
+                null,
+                mensajeExito,
+                "Confirmación de Apuesta",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        btn_enviar_apuesta.setVisible(false); //Oculto el botón de enviar
+        btnSiguienteJugador.setVisible(true); //Muestro el botón de siguiente
+
+        //4. Finalmente, reiniciamos el tablero para el siguiente jugador
+        temporizadorReinicio = new PauseTransition(Duration.seconds(12));
+        temporizadorReinicio.setOnFinished(e -> reiniciarTablero());
+        temporizadorReinicio.play();
+    }
+    private void reiniciarTablero(){
+        //Si el usuario presionó el botón antes de los 12 segundos, cancelamos el reloj
+        if (temporizadorReinicio != null) {
+            temporizadorReinicio.stop();
+        }
+        //Se elimina todas las apuestas realizadas en memoria
+        Arrays.fill(apuestasUsuario, null);
+        //Se busca todos los botones dentro del panel y se retira el CSS de boton seleccionado
+        idPanelJuego.lookupAll(".boton-seleccionado").forEach(nodo ->{
+            nodo.getStyleClass().remove("boton-seleccionado");
+        });
+        //Dejamos los botones como estaban
+        btn_enviar_apuesta.setVisible(true);
+        btnSiguienteJugador.setVisible(false);
+
+        //Volvemos a mostrar la pantalla carga
+        idPantallaCarga.setVisible(true);
+        numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
+        lblConcorso.setText(String.valueOf(numeroConcursoActual));
+    }
+    @FXML
+    void accionSiguienteJugador(ActionEvent event){
+        reiniciarTablero();
+    }
 }
+
