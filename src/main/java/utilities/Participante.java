@@ -1,5 +1,9 @@
 package utilities;
 
+/**
+ * Clase Participante cuenta con los atributos nombre y puntos
+ * El nombre es generado automaticamente por la clase NameGenerator
+ */
 public class Participante {
     private String nombre;
     private int puntos;
