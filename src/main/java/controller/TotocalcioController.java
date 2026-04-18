@@ -347,6 +347,14 @@ private void limpiarBotonesDeLaFila(int fila){
         idPantallaCarga.setVisible(true);
         numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
+
+        //En caso se ejecute la aplicación en dos laptops, para la sincronización se deberá consultar de nuevo a la base
+        // 1. Vaciamos el Heap actual creando uno nuevo
+        leaderboard = new MaxHeap<>(new ComparadorParticipante());
+        // 2. Volvemos a consultar la nube
+        cargarLeaderboard();
+        // 3. Dibujamos el Top 5 actualizado
+        actualizarLeaderboardUI();
     }
     @FXML
     void accionSiguienteJugador(ActionEvent event){
