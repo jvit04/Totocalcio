@@ -2,6 +2,9 @@ package utilities;
 
 import java.util.Random;
 
+/**
+ * Clase para generar los nombres aleatorios para los jugadores ADJETIVO + LEYENDA
+ */
 public class NameGenerator {
     private static final String[] ADJETIVOS = {
             "Mágico", "Táctico", "Férreo", "Veloz", "Estratégico",
@@ -17,6 +20,10 @@ public class NameGenerator {
             "Pirlo", "Del Piero", "Baresi", "Iniesta", "Cannavaro"
     };
 
+    /**
+     * Se encarga de generar el nombre con el formato mencionado.
+     * @return ADJETIVO + LEYENDA
+     */
     public static String generarNombreAleatorio(){
         Random random = new Random();
         String adjetivo = ADJETIVOS[random.nextInt(ADJETIVOS.length)];

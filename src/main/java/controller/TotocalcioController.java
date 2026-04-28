@@ -21,7 +21,13 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Clase clave para el funcionamiento de la aplicación, aquí está toda la lógica de la app.
+ */
 public class TotocalcioController {
+    /**
+     * Atributos y objetos @FX
+     */
     private int numeroConcursoActual = 0;
     ComparadorParticipante cmp=new ComparadorParticipante();
     MaxHeap<Participante> leaderboard =  new MaxHeap<>(cmp);
@@ -117,6 +123,9 @@ public class TotocalcioController {
     @FXML
     private Label lblConcorso;
 
+    /**
+     * Metodo para inicializar la aplicación
+     */
     public void initialize(){
         cargarLeaderboard();
         actualizarLeaderboardUI();
@@ -125,6 +134,10 @@ public class TotocalcioController {
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
 
     }
+
+    /**
+     * Metodo que carga la tabla de posiciones (leaderboard) actual, guardandola en el Heap
+     */
     public void cargarLeaderboard(){
         //llamo a la función de la base de datos
         String query = "SELECT * FROM fn_selectAll()";
@@ -147,7 +160,10 @@ public class TotocalcioController {
         }
     }
 
-
+    /**
+     * Metodo que actualiza la tabla de posiciones en el UI
+     * Es la parte visual, también genera colores diferentes para los primeros tres puestos
+     */
     public void actualizarLeaderboardUI() {
         // 1. Limpiar la interfaz previa
         vboxListaRanking.getChildren().clear();
@@ -180,7 +196,7 @@ public class TotocalcioController {
             } else {
                 // RESTO: Blanco normal sin borde
                 estiloFila += "-fx-background-color: white;";
-                colorTextoPuesto += "-fx-text-fill: #1a2b4c;"; // Azul de tu diseño
+                colorTextoPuesto += "-fx-text-fill: #1a2b4c;"; // Azul del diseño
             }
 
             fila.setStyle(estiloFila);
@@ -202,7 +218,14 @@ public class TotocalcioController {
             puesto++;
         }
     }
-@FXML
+
+    /**
+     * Metodo que registra el boton pulsado por el usuario, me lo recomendó la IA y me parece sumamente fascinante
+     * Identifica que boton fue presionado y gracias al formato del id (btn_fila_opcion) permite saber a qué fila exacta
+     * pertenece
+     * @param event
+     */
+    @FXML
 public void registrarApuesta(ActionEvent event){
     //1. Identificar que botón se presionó
     Button botonPresionado = (Button) event.getSource();
@@ -245,10 +268,21 @@ private void limpiarBotonesDeLaFila(int fila){
             }
         }
 }
+
+    /**
+     * Esto es para cuando el usuario de en el botón "INIZIARE" se oculte la pantalla de bloqueo
+     * @param event
+     */
     @FXML
     void ocultarPantalla(ActionEvent event) {
         idPantallaCarga.setVisible(false);
     }
+
+    /**
+     * Este metodo es para el botón de enviar apuesta, procesa los resultados enviados por parte del jugador
+     * En caso de que no haya enviado alguuno, le llega una advertencia
+     * @param event
+     */
     @FXML
     void procesarApuesta(ActionEvent event) {
         //Verificar si el usuario respondió todas las preguntas
@@ -290,6 +324,10 @@ private void limpiarBotonesDeLaFila(int fila){
         temporizadorReinicio.setOnFinished(e -> reiniciarTablero());
         temporizadorReinicio.play();
     }
+
+    /**
+     * Metodo para reiniciar el tablero y dejarlo como estaba antes del juego
+     */
     private void reiniciarTablero(){
         //Si el usuario presionó el botón antes de los 12 segundos, cancelamos el reloj
         if (temporizadorReinicio != null) {
@@ -309,6 +347,14 @@ private void limpiarBotonesDeLaFila(int fila){
         idPantallaCarga.setVisible(true);
         numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
+
+        //En caso se ejecute la aplicación en dos laptops, para la sincronización se deberá consultar de nuevo a la base
+        // 1. Vaciamos el Heap actual creando uno nuevo
+        leaderboard = new MaxHeap<>(new ComparadorParticipante());
+        // 2. Volvemos a consultar la nube
+        cargarLeaderboard();
+        // 3. Dibujamos el Top 5 actualizado
+        actualizarLeaderboardUI();
     }
     @FXML
     void accionSiguienteJugador(ActionEvent event){

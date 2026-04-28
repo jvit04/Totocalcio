@@ -1,6 +1,9 @@
 package utilities;
 import java.util.Comparator;
 
+/**
+ * Clase Comparador que permite (valga la redundancia) comparar los diferentes participantes, útil para el Heap
+ */
 public class ComparadorParticipante implements Comparator<Participante> {
 
     @Override
