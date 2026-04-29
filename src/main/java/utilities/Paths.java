@@ -14,5 +14,5 @@ public class Paths {
             : "123456";
 
 //Usar este comando de git: git config --global core.autocrlf true
-    //si sale este mensaje: warning: in the working copy of 'src/main/resources/mainTotocalcio.fxml', LF will be replaced by CRLF the next time Git touches it
+    //si sale este mensaje: warning: in the working copy of 'src/main/resources/mainTotocalcio1.fxml', LF will be replaced by CRLF the next time Git touches it
 }

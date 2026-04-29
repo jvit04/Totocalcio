@@ -14,10 +14,10 @@ public class NameGenerator {
     };
 
     private static final String[] LEYENDAS = {
-            "Mbappé", "Vinícius", "Zidane", "Pelé", "Maradona",
-            "Baggio", "Ronaldo", "Buffon", "Totti", "Messi",
-            "Maldini", "Cruyff", "Ronaldinho", "Neymar", "Cristiano",
-            "Pirlo", "Del Piero", "Baresi", "Iniesta", "Cannavaro"
+            "Baggio", "Buffon", "Totti", "Maldini", "Pirlo",
+            "Del Piero", "Baresi", "Cannavaro", "Meazza", "Rossi",
+            "Zoff", "Riva", "Scirea", "Nesta", "Rivera",
+            "Vieri", "Mazzola", "Tardelli", "Facchetti", "Gattuso"
     };
 
     /**

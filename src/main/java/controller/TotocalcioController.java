@@ -288,8 +288,7 @@ private void limpiarBotonesDeLaFila(int fila){
         //Verificar si el usuario respondió todas las preguntas
         for (int i = 0; i < apuestasUsuario.length; i++) {
             if(apuestasUsuario[i]==null){
-                //todo por mejorar
-                mostrarNotificacion("¡Atención! Te falta llenar el partido " + (i + 1), true);
+                mostrarNotificacion("Attenzione! Devi rispondere tutti le partite", true);
                 return;
             }
         }
@@ -313,7 +312,7 @@ private void limpiarBotonesDeLaFila(int fila){
         leaderboard.insertar(participante);
         actualizarLeaderboardUI();
 
-        String mensajeExito = "¡Éxito! " + nombreJugador + " logró " + puntosObtenidos + " pts.";
+        String mensajeExito = "Successo! " + nombreJugador + " ha totalizzato " + puntosObtenidos + " pti.";
         mostrarNotificacion(mensajeExito, false);
 
         btn_enviar_apuesta.setVisible(false); //Oculto el botón de enviar
@@ -365,10 +364,10 @@ private void limpiarBotonesDeLaFila(int fila){
         //1. Se configura el texto
         lblNotificacion.setText(mensaje);
 
-        //2. Se limpia los colores anteriores (¡SIN EL PUNTO!)
+        //2. Se limpia los colores anteriores
         panelNotificacion.getStyleClass().removeAll("notificacion-error", "notificacion-exito");
 
-        //3. Se asigna el color correcto (¡SIN EL PUNTO!)
+        //3. Se asigna el color correcto
         if (esError){
             panelNotificacion.getStyleClass().add("notificacion-error");
         }else {
