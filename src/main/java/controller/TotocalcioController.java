@@ -1,23 +1,28 @@
 package controller;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import utilities.*;
-
+import javafx.stage.Stage;
 import javax.swing.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,17 +38,27 @@ public class TotocalcioController {
     MaxHeap<Participante> leaderboard =  new MaxHeap<>(cmp);
     private String[] apuestasUsuario = new String[7];
 
-    //Este es el arreglo con los resultados históricos que el jugador debe adivinar
-    // 1938(1), 1970(2), 1930(2), 2022(X), 1966(1), 2006(X), Lazio-Roma(1)
-    private final String[] resultadosReales = {"1", "2", "2", "X", "1", "X", "1"};
-
     //Se creará un temporizador para el reinicio de la app
     private PauseTransition temporizadorReinicio;
     // Un temporizador exclusivo para ocultar la notificación
     private PauseTransition temporizadorNotificacion;
+    // Esta lista guardará los 7 partidos (6 mundiales + 1 bonus) que salieron en pantalla
+    private List<Partido> rondaActual = new ArrayList<>();
+    private Label[] titulos;
+    private Label[] locales;
+    private Label[] visitantes;
+    private ImageView[] imgLocales;
+    private ImageView[] imgVisitantes;
+
+    @FXML private Label lblTitulo_0, lblTitulo_1, lblTitulo_2, lblTitulo_3, lblTitulo_4, lblTitulo_5, lblTitulo_6;
+    @FXML private Label lblLocal_0, lblLocal_1, lblLocal_2, lblLocal_3, lblLocal_4, lblLocal_5, lblLocal_6;
+    @FXML private Label lblVisit_0, lblVisit_1, lblVisit_2, lblVisit_3, lblVisit_4, lblVisit_5, lblVisit_6;
+    @FXML private ImageView imgLocal_0, imgLocal_1, imgLocal_2, imgLocal_3, imgLocal_4, imgLocal_5, imgLocal_6;
+    @FXML private ImageView imgVisit_0, imgVisit_1, imgVisit_2, imgVisit_3, imgVisit_4, imgVisit_5, imgVisit_6;
     @FXML
     private Button btnSiguienteJugador;
-
+    @FXML
+    private ImageView imgView_maximizar;
     @FXML
     private AnchorPane idPantallaCarga;
     @FXML
@@ -127,6 +142,15 @@ public class TotocalcioController {
      * Metodo para inicializar la aplicación
      */
     public void initialize(){
+        // 1. Agrupamos los elementos en orden (del slot 0 al 6)
+        titulos = new Label[]{lblTitulo_0, lblTitulo_1, lblTitulo_2, lblTitulo_3, lblTitulo_4, lblTitulo_5, lblTitulo_6};
+        locales = new Label[]{lblLocal_0, lblLocal_1, lblLocal_2, lblLocal_3, lblLocal_4, lblLocal_5, lblLocal_6};
+        visitantes = new Label[]{lblVisit_0, lblVisit_1, lblVisit_2, lblVisit_3, lblVisit_4, lblVisit_5, lblVisit_6};
+        imgLocales = new ImageView[]{imgLocal_0, imgLocal_1, imgLocal_2, imgLocal_3, imgLocal_4, imgLocal_5, imgLocal_6};
+        imgVisitantes = new ImageView[]{imgVisit_0, imgVisit_1, imgVisit_2, imgVisit_3, imgVisit_4, imgVisit_5, imgVisit_6};
+
+        // 2. Llenamos el tablero por primera vez
+        llenarTablero();
         cargarLeaderboard();
         actualizarLeaderboardUI();
         idPantallaCarga.setVisible(true);
@@ -134,7 +158,37 @@ public class TotocalcioController {
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
 
     }
+    public void llenarTablero() {
+        // Limpiamos la memoria de la partida anterior
+        rondaActual.clear();
 
+        // Traemos los datos frescos de la BD
+        List<Partido> mundiales = ConexionBD.obtenerPartidos();
+        Partido bonus = ConexionBD.obtenerPartidosBonus();
+
+        // Juntamos todo en nuestra lista maestra de la ronda (7 partidos)
+        rondaActual.addAll(mundiales);
+        if(bonus != null) {
+            rondaActual.add(bonus);
+        }
+
+        // Llenamos los 7 slots en 5 líneas de código
+        for (int i = 0; i < rondaActual.size(); i++) {
+            Partido p = rondaActual.get(i);
+
+            titulos[i].setText(p.getTituloPartido());
+            locales[i].setText(p.getEquipoLocal());
+            visitantes[i].setText(p.getEquipoVisitante());
+
+            try {
+                // Cargamos las banderas dinámicamente desde la carpeta resources
+                imgLocales[i].setImage(new Image(getClass().getResourceAsStream("/imagenes/" + p.getRutaBanderaLocal())));
+                imgVisitantes[i].setImage(new Image(getClass().getResourceAsStream("/imagenes/" + p.getRutaBanderaVisitante())));
+            } catch (Exception e) {
+                System.out.println("Error cargando imagen del partido " + i + ": " + e.getMessage());
+            }
+        }
+    }
     /**
      * Metodo que carga la tabla de posiciones (leaderboard) actual, guardandola en el Heap
      */
@@ -288,20 +342,23 @@ private void limpiarBotonesDeLaFila(int fila){
         //Verificar si el usuario respondió todas las preguntas
         for (int i = 0; i < apuestasUsuario.length; i++) {
             if(apuestasUsuario[i]==null){
-                //todo por mejorar
-                mostrarNotificacion("¡Atención! Te falta llenar el partido " + (i + 1), true);
+                mostrarError("Attenzione! Devi rispondere tutti le partite");
                 return;
             }
         }
-        //Calculo de puntos
+        // Calculo de puntos dinámico
         int puntosObtenidos = 0;
 
         for (int i = 0; i < apuestasUsuario.length; i++) {
-            if(apuestasUsuario[i].equals(resultadosReales[i])){
-                if(i==6){
-                    puntosObtenidos +=7;
-                }else {
-                    puntosObtenidos+=5;
+            // Extraemos la respuesta correcta directamente del objeto Partido en esa posición
+            String resultadoCorrecto = rondaActual.get(i).getResultadoReal();
+
+            // Comparamos lo que presionó el usuario con la respuesta de la base de datos
+            if(apuestasUsuario[i].trim().equalsIgnoreCase(resultadoCorrecto)){
+                if(i == 6){
+                    puntosObtenidos += 7; // El partido Bonus vale 7 puntos
+                } else {
+                    puntosObtenidos += 5; // Los partidos de Mundial valen 5 puntos
                 }
             }
         }
@@ -313,14 +370,33 @@ private void limpiarBotonesDeLaFila(int fila){
         leaderboard.insertar(participante);
         actualizarLeaderboardUI();
 
-        String mensajeExito = "¡Éxito! " + nombreJugador + " logró " + puntosObtenidos + " pts.";
-        mostrarNotificacion(mensajeExito, false);
+        // 1. CREAMOS LA ALERTA DE RESUMEN INDIVIDUAL
+        String mensajeResumen = "Giocatore: " + nombreJugador + "\n" +
+                "Punteggio: " + puntosObtenidos + " pts.\n\n" +
+                "Grazie per aver partecipato al Totocalcio!";
+
+        Alert alertaResumen = new Alert(AlertType.INFORMATION);
+        alertaResumen.setTitle("Risultato della Giocata");
+        alertaResumen.setHeaderText("Scommessa Inviata con Successo!");
+        alertaResumen.setContentText(mensajeResumen);
+
+        // Mantenemos la pantalla completa intacta
+        Stage stagePrincipal = (Stage) idPanelJuego.getScene().getWindow();
+        alertaResumen.initOwner(stagePrincipal);
+
+        // Mostramos el resumen al jugador
+        alertaResumen.showAndWait();
+
+        // Verificamos si es el final de una ronda de 2 jugadores
+        if (numeroConcursoActual % 2 == 0) {
+            evaluarDuelo();
+        }
 
         btn_enviar_apuesta.setVisible(false); //Oculto el botón de enviar
         btnSiguienteJugador.setVisible(true); //Muestro el botón de siguiente
 
         //4. Finalmente, reiniciamos el tablero para el siguiente jugador
-        temporizadorReinicio = new PauseTransition(Duration.seconds(12));
+        temporizadorReinicio = new PauseTransition(Duration.seconds(30));
         temporizadorReinicio.setOnFinished(e -> reiniciarTablero());
         temporizadorReinicio.play();
     }
@@ -329,6 +405,7 @@ private void limpiarBotonesDeLaFila(int fila){
      * Metodo para reiniciar el tablero y dejarlo como estaba antes del juego
      */
     private void reiniciarTablero(){
+        llenarTablero();
         //Si el usuario presionó el botón antes de los 12 segundos, cancelamos el reloj
         if (temporizadorReinicio != null) {
             temporizadorReinicio.stop();
@@ -361,30 +438,58 @@ private void limpiarBotonesDeLaFila(int fila){
         reiniciarTablero();
     }
 
-    private void mostrarNotificacion(String mensaje, boolean esError){
-        //1. Se configura el texto
+    private void mostrarError(String mensaje){
         lblNotificacion.setText(mensaje);
-
-        //2. Se limpia los colores anteriores (¡SIN EL PUNTO!)
-        panelNotificacion.getStyleClass().removeAll("notificacion-error", "notificacion-exito");
-
-        //3. Se asigna el color correcto (¡SIN EL PUNTO!)
-        if (esError){
-            panelNotificacion.getStyleClass().add("notificacion-error");
-        }else {
-            panelNotificacion.getStyleClass().add("notificacion-exito");
-        }
+        panelNotificacion.getStyleClass().add("notificacion-error");
 
         //4. Se muestra en pantalla
         panelNotificacion.setVisible(true);
-
         //5. Se configura un temporizador para que desaparezca solo
         if(temporizadorNotificacion!=null){
             temporizadorNotificacion.stop();
         }
-        temporizadorNotificacion = new PauseTransition(Duration.seconds(3));
+        temporizadorNotificacion = new PauseTransition(Duration.seconds(4));
         temporizadorNotificacion.setOnFinished(e -> panelNotificacion.setVisible(false));
         temporizadorNotificacion.play();
+    }
+    private void evaluarDuelo() {
+        List<Participante> ultimos = ConexionBD.obtenerUltimosDosParticipantes();
+
+        // Nos aseguramos de que realmente haya dos jugadores para comparar
+        if (ultimos.size() == 2) {
+            // Nota: Como la consulta es DESC (Descendente), el índice 0 es el último que jugó, y el 1 es el anterior.
+            Participante jugador2 = ultimos.get(0);
+            Participante jugador1 = ultimos.get(1);
+
+            String mensajeDuelo;
+
+            // Lógica para ver quién tiene más puntos
+            if (jugador1.getPuntos() > jugador2.getPuntos()) {
+                mensajeDuelo = "🏆 VINCITORE DEL DUELLO:\n\n" +
+                        jugador1.getNombre() + " (" + jugador1.getPuntos() + " pts)\n" +
+                        "ha sconfitto a " + jugador2.getNombre() + " (" + jugador2.getPuntos() + " pts)!";
+            } else if (jugador2.getPuntos() > jugador1.getPuntos()) {
+                mensajeDuelo = "🏆 VINCITORE DEL DUELLO:\n\n" +
+                        jugador2.getNombre() + " (" + jugador2.getPuntos() + " pts)\n" +
+                        "ha sconfitto a " + jugador1.getNombre() + " (" + jugador1.getPuntos() + " pts)!";
+            } else {
+                mensajeDuelo = "🤝 PAREGGIO! \n\nEntrambi hanno totalizzato " + jugador1.getPuntos() + " pts. Bel duello!";
+            }
+
+            // Mostramos el Pop-up oficial
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setTitle("RISULTATO DEL DUELLO");
+            alerta.setHeaderText("Abbiamo un risultato!");
+            alerta.setContentText(mensajeDuelo);
+            Stage stagePrincipal = (Stage) idPanelJuego.getScene().getWindow();
+            alerta.initOwner(stagePrincipal); // Pausa la app hasta que cierren la ventana
+            alerta.showAndWait();
+        }
+    }
+    @FXML
+    void restaurarPantallaCompleta(MouseEvent event) {
+        Stage stagePrincipal = (Stage) idPanelJuego.getScene().getWindow();
+        stagePrincipal.setFullScreen(true);
     }
 }
 

@@ -7,17 +7,17 @@ import java.util.Random;
  */
 public class NameGenerator {
     private static final String[] ADJETIVOS = {
-            "Mágico", "Táctico", "Férreo", "Veloz", "Estratégico",
-            "Implacable", "Legendario", "Invencible", "Fantástico", "Astro",
-            "Colosal", "Supremo", "Épico", "Mítico", "Audaz",
-            "Maestro", "Formidable", "Intratable", "Inmortal", "Glorioso"
+            "Magico", "Tattico", "Ferreo", "Veloce", "Strategico",
+            "Implacabile", "Leggendario", "Invincibile", "Fantastico", "Divino",
+            "Colossale", "Supremo", "Epico", "Mitico", "Audace",
+            "Maestro", "Formidabile", "Insuperabile", "Immortale", "Glorioso"
     };
 
     private static final String[] LEYENDAS = {
-            "Mbappé", "Vinícius", "Zidane", "Pelé", "Maradona",
-            "Baggio", "Ronaldo", "Buffon", "Totti", "Messi",
-            "Maldini", "Cruyff", "Ronaldinho", "Neymar", "Cristiano",
-            "Pirlo", "Del Piero", "Baresi", "Iniesta", "Cannavaro"
+            "Baggio", "Buffon", "Totti", "Maldini", "Pirlo",
+            "Del Piero", "Baresi", "Cannavaro", "Meazza", "Rossi",
+            "Zoff", "Riva", "Scirea", "Nesta", "Rivera",
+            "Vieri", "Mazzola", "Tardelli", "Facchetti", "Gattuso"
     };
 
     /**
