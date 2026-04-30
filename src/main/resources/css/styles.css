@@ -125,8 +125,3 @@
 .notificacion-error {
     -fx-background-color: #dc3545;
 }
-
-/* Color para Éxito (Verde) */
-.notificacion-exito {
-    -fx-background-color: #28a745;
-}

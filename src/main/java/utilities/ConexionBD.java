@@ -10,6 +10,7 @@ import java.util.List;
 public class ConexionBD {
     /**
      * Metodo para conectar con la base, usa atributos guardados en la clase Paths
+     *
      * @return la conexión con la base
      * @throws SQLException en caso de que no se pueda conectar
      */
@@ -19,10 +20,11 @@ public class ConexionBD {
 
     /**
      * Metodo para almacenar los participantes en la base de datos
+     *
      * @param nombre
      * @param puntos
      */
-    public static void guardarParticipante(String nombre, int puntos){
+    public static void guardarParticipante(String nombre, int puntos) {
         String query = "SELECT fn_guardarParticipante(?, ?)";
         try (Connection conn = conectar();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -39,9 +41,10 @@ public class ConexionBD {
 
     /**
      * Este metodo permite que el número del concurso, ubicado en la esquina superior izquierda, crezca secuencialmente.
+     *
      * @return el número del último registro más uno
      */
-    public static int obtenerSiguienteConcurso(){
+    public static int obtenerSiguienteConcurso() {
         String query = "SELECT obtenerSiguienteConcurso()";
         try (Connection conn = conectar();
              java.sql.Statement stmt = conn.createStatement();
@@ -57,6 +60,7 @@ public class ConexionBD {
 
         return 1;
     }
+
     public static List<Partido> obtenerPartidos() {
         List<Partido> listaPartidos = new ArrayList<>();
 
@@ -94,6 +98,7 @@ public class ConexionBD {
         }
         return listaPartidos;
     }
+
     public static Partido obtenerPartidosBonus() {
         Partido bonus = null;
         String query = "SELECT * FROM fn_extraerBonus()";
@@ -112,6 +117,26 @@ public class ConexionBD {
         return bonus;
     }
 
+    public static List<Participante> obtenerUltimosDosParticipantes() {
+        List<Participante> ultimosDos = new ArrayList<>();
+        String query = "SELECT * FROM fn_last_two()";
 
+        try (Connection connection = ConexionBD.conectar();
+             PreparedStatement pstmt = connection.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                // Usamos los nuevos nombres de las columnas devueltas por la función
+                String nombre = rs.getString("out_nombre");
+                int puntos = rs.getInt("out_puntos");
+
+                Participante participante = new Participante(nombre, puntos);
+                ultimosDos.add(participante);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al extraer el duelo: " + e.getMessage());
+        }
+        return ultimosDos;
+    }
 //Comando para reiniciar los datos de la base, usar en consola SQL: TRUNCATE TABLE participante RESTART IDENTITY;
-}
+    }
