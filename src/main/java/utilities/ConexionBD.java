@@ -24,19 +24,28 @@ public class ConexionBD {
      * @param nombre
      * @param puntos
      */
-    public static void guardarParticipante(String nombre, int puntos) {
-        String query = "SELECT fn_guardarParticipante(?, ?)";
+    public static int guardarParticipante(String nombre, int puntos) {
+        // Llamamos a la función SQL que creamos, pasándole los 2 parámetros
+        String query = "SELECT fn_guardar_participante(?, ?)";
+        int idGenerado = -1; // -1 será nuestro indicador de error
+
         try (Connection conn = conectar();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, nombre);
             pstmt.setInt(2, puntos);
 
-            pstmt.execute();
-
+            // Ejecutamos la consulta y leemos el resultado
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    idGenerado = rs.getInt(1); // Atrapamos el ID real
+                }
+            }
         } catch (SQLException e) {
-            System.out.println("Error al guardar en BD: " + e.getMessage());
+            System.out.println("Error al guardar participante en la BD: " + e.getMessage());
         }
+
+        return idGenerado;
     }
 
     /**

@@ -166,7 +166,7 @@ public class TotocalcioController {
         List<Partido> mundiales = ConexionBD.obtenerPartidos();
         Partido bonus = ConexionBD.obtenerPartidosBonus();
 
-        // Juntamos todo en nuestra lista maestra de la ronda (7 partidos)
+        // Juntamos en la lista maestra de la ronda (7 partidos)
         rondaActual.addAll(mundiales);
         if(bonus != null) {
             rondaActual.add(bonus);
@@ -365,7 +365,7 @@ private void limpiarBotonesDeLaFila(int fila){
 
         //3.Generación de usuario y persistencia
         String nombreJugador = NameGenerator.generarNombreAleatorio();
-        ConexionBD.guardarParticipante(nombreJugador,puntosObtenidos);
+        int idRealAsignado = ConexionBD.guardarParticipante(nombreJugador, puntosObtenidos);
         Participante participante =  new Participante(nombreJugador,puntosObtenidos);
         leaderboard.insertar(participante);
         actualizarLeaderboardUI();
@@ -388,7 +388,7 @@ private void limpiarBotonesDeLaFila(int fila){
         alertaResumen.showAndWait();
 
         // Verificamos si es el final de una ronda de 2 jugadores
-        if (numeroConcursoActual % 2 == 0) {
+        if (idRealAsignado % 2 == 0) {
             evaluarDuelo();
         }
 
@@ -396,7 +396,7 @@ private void limpiarBotonesDeLaFila(int fila){
         btnSiguienteJugador.setVisible(true); //Muestro el botón de siguiente
 
         //4. Finalmente, reiniciamos el tablero para el siguiente jugador
-        temporizadorReinicio = new PauseTransition(Duration.seconds(30));
+        temporizadorReinicio = new PauseTransition(Duration.seconds(15));
         temporizadorReinicio.setOnFinished(e -> reiniciarTablero());
         temporizadorReinicio.play();
     }
