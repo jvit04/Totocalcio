@@ -7,10 +7,10 @@ import java.util.Random;
  */
 public class NameGenerator {
     private static final String[] ADJETIVOS = {
-            "Mágico", "Táctico", "Férreo", "Veloz", "Estratégico",
-            "Implacable", "Legendario", "Invencible", "Fantástico", "Astro",
-            "Colosal", "Supremo", "Épico", "Mítico", "Audaz",
-            "Maestro", "Formidable", "Intratable", "Inmortal", "Glorioso"
+            "Magico", "Tattico", "Ferreo", "Veloce", "Strategico",
+            "Implacabile", "Leggendario", "Invincibile", "Fantastico", "Divino",
+            "Colossale", "Supremo", "Epico", "Mitico", "Audace",
+            "Maestro", "Formidabile", "Insuperabile", "Immortale", "Glorioso"
     };
 
     private static final String[] LEYENDAS = {

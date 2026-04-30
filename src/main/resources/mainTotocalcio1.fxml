@@ -25,12 +25,12 @@
                     </viewport>
                 </ImageView>
 
-                <HBox layoutX="59.0" layoutY="150.0" prefHeight="599.0" prefWidth="1134.0">
+                <HBox layoutX="59.0" layoutY="170.0" prefHeight="599.0" prefWidth="1134.0">
                     <children>
-
+                        <!-- PANEL IZQUIERDO: PREGUNTAS -->
                         <AnchorPane prefHeight="618.0" prefWidth="668.0">
                             <children>
-                                <ImageView fitHeight="721.0" fitWidth="697.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="721.0" fitWidth="697.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@imagenes/totocalcioGioco.png" />
                                     </image>
@@ -41,189 +41,205 @@
                                     </font>
                                 </Label>
 
-                                <Label layoutX="110.0" layoutY="43.0" text="19 GIUGNO 1938">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="86.0" layoutY="81.0" text="Italia"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="171.0" layoutY="81.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="216.0" layoutY="81.0" text="Ungheria"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="41.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/it.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="296.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/hu.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_0_1" layoutX="62.0" layoutY="115.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_0_X" layoutX="153.0" layoutY="116.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_0_2" layoutX="243.0" layoutY="116.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="59.0" layoutY="155.0" text="1 = Vince Italia"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="160.0" layoutY="155.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="231.0" layoutY="155.0" text="2 = Vince Ungheria"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- COLUMNA 1 (Izquierda) -->
+                                <!-- SLOT 0 -->
+                                <VBox alignment="CENTER" layoutX="30.0" layoutY="46.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_0" text="MONDIALE FRANCIA 1938"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_0" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/it.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_0" text="Italia"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_0" text="Ungheria"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_0" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/hu.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_0_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_0_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_0_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="110.0" layoutY="183.0" text="21 GIUGNO 1970">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="88.0" layoutY="222.0" text="Italia"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="172.0" layoutY="222.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="228.0" layoutY="222.0" text="Brasile"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="43.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/it.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="292.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/br.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_1_1" layoutX="62.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_1_X" layoutX="153.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_1_2" layoutX="243.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="59.0" layoutY="294.0" text="1 = Vince Italia"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="161.0" layoutY="294.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="235.0" layoutY="294.0" text="2 = Vince Brasile"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- SLOT 1 -->
+                                <VBox alignment="CENTER" layoutX="30.0" layoutY="186.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_1" text="MONDIALE MESSICO 1970"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_1" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/it.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_1" text="Italia"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_1" text="Brasile"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_1" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/br.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_1_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_1_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_1_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="111.0" layoutY="323.0" text="30 LUGLIO 1930">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="76.0" layoutY="361.0" text="Argentina"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="171.0" layoutY="361.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="217.0" layoutY="361.0" text="Uruguay"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="35.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/ar.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="292.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/uy.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_2_1" layoutX="60.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_2_X" layoutX="152.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_2_2" layoutX="241.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="44.0" layoutY="432.0" text="1 = Vince Argentina"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="160.0" layoutY="432.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="230.0" layoutY="432.0" text="2 = Vince Uruguay"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- SLOT 2 -->
+                                <VBox alignment="CENTER" layoutX="29.0" layoutY="326.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_2" text="MONDIALE URUGUAY 1930"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_2" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/ar.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_2" text="Argentina"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_2" text="Uruguay"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_2" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/uy.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_2_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_2_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_2_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="455.0" layoutY="43.0" text="18 DICEMBRE 2022">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="433.0" layoutY="81.0" text="Argentina"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="531.0" layoutY="81.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="583.0" layoutY="81.0" text="Francia"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="388.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/ar.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="653.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/fr.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_3_1" layoutX="420.0" layoutY="116.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_3_X" layoutX="510.0" layoutY="116.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_3_2" layoutX="601.0" layoutY="116.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="405.0" layoutY="155.0" text="1 = Vince Argentina"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="518.0" layoutY="155.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="592.0" layoutY="155.0" text="2 = Vince Francia"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- COLUMNA 2 (Derecha) -->
+                                <!-- SLOT 3 -->
+                                <VBox alignment="CENTER" layoutX="386.0" layoutY="46.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_3" text="MONDIALE QATAR 2022"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_3" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/ar.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_3" text="Argentina"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_3" text="Francia"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_3" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/fr.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_3_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_3_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_3_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="471.0" layoutY="183.0" text="30 LUGLIO 1966">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="435.0" layoutY="222.0" text="Inghilterra"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="532.0" layoutY="222.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="570.0" layoutY="222.0" text="Germania"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="390.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/gb-eng.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="656.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/de.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_4_1" layoutX="422.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_4_X" layoutX="512.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_4_2" layoutX="603.0" layoutY="256.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="406.0" layoutY="294.0" text="1 = Vince Inghilterra"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="520.0" layoutY="294.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="588.0" layoutY="294.0" text="2 = Vince Germania"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- SLOT 4 -->
+                                <VBox alignment="CENTER" layoutX="386.0" layoutY="186.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_4" text="MONDIALE INGHILTERRA 1966"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_4" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/gb-eng.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_4" text="Inghilterra"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_4" text="Germania"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_4" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/de.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_4_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_4_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_4_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="478.0" layoutY="323.0" text="9 LUGLIO 2006">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="446.0" layoutY="361.0" text="Italia"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="532.0" layoutY="361.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="580.0" layoutY="361.0" text="Francia"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="401.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/it.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="28.0" fitWidth="56.0" layoutX="649.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/fr.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_5_1" layoutX="422.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_5_X" layoutX="512.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_5_2" layoutX="603.0" layoutY="393.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="419.0" layoutY="432.0" text="1 = Vince Italia"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="520.0" layoutY="432.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="594.0" layoutY="432.0" text="2 = Vince Francia"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+                                <!-- SLOT 5 -->
+                                <VBox alignment="CENTER" layoutX="386.0" layoutY="326.0" prefWidth="310.0" spacing="10.0">
+                                    <children>
+                                        <Label fx:id="lblTitulo_5" text="MONDIALE GERMANIA 2006"><font><Font name="Roboto Black" size="19.0" /></font></Label>
+                                        <HBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <ImageView fx:id="imgLocal_5" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/it.png" /></image></ImageView>
+                                                <Label fx:id="lblLocal_5" text="Italia"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <Label fx:id="lblVisit_5" text="Francia"><font><Font name="Roboto Regular" size="16.0" /></font></Label>
+                                                <ImageView fx:id="imgVisit_5" fitHeight="28.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true"><image><Image url="@imagenes/fr.png" /></image></ImageView>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER" spacing="25.0">
+                                            <children>
+                                                <Button fx:id="btn_5_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_5_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                                <Button fx:id="btn_5_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2"><font><Font name="Roboto Black" size="19.0" /></font></Button>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
 
-                                <Label layoutX="252.0" layoutY="462.0" text="SEZIONE BONUS: Serie A" textFill="WHITE">
+                                <!-- TÍTULO SECCIÓN BONUS -->
+                                <Label layoutX="252.0" layoutY="463.0" text="SEZIONE BONUS: Serie A" textFill="WHITE">
                                     <font><Font name="Roboto Black" size="19.0" /></font>
                                 </Label>
-                                <Label layoutX="51.0" layoutY="513.0" text="Derby della Capitale">
-                                    <font><Font name="Roboto Black Italic" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="52.0" layoutY="542.0" text="2 MARZO 2019">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Label>
-                                <Label layoutX="368.0" layoutY="499.0" text="Lazio"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="467.0" layoutY="499.0" text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <Label layoutX="545.0" layoutY="499.0" text="Roma"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
-                                <ImageView fitHeight="92.0" fitWidth="112.0" layoutX="270.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/Lazio-logo.png" /></image>
-                                </ImageView>
-                                <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="609.0" layoutY="499.0" pickOnBounds="true" preserveRatio="true">
-                                    <image><Image url="@imagenes/104.png" /></image>
-                                </ImageView>
-                                <Button fx:id="btn_6_1" layoutX="358.0" layoutY="529.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_6_X" layoutX="448.0" layoutY="529.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Button fx:id="btn_6_2" layoutX="539.0" layoutY="529.0" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
-                                    <font><Font name="Roboto Black" size="19.0" /></font>
-                                </Button>
-                                <Label layoutX="353.0" layoutY="568.0" text="1 = Vince Lazio"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="456.0" layoutY="568.0" text="X = Rigori"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
-                                <Label layoutX="534.0" layoutY="568.0" text="2 = Vince Roma"><font><Font name="Roboto Regular" size="11.0" /></font></Label>
+
+                                <!-- SLOT 6: BONUS (DISEÑO HORIZONTAL ESPECIAL) -->
+                                <HBox alignment="CENTER" layoutX="39.0" layoutY="503.0" prefWidth="650.0" spacing="15.0">
+                                    <children>
+                                        <!-- Título en Cursiva -->
+                                        <Label fx:id="lblTitulo_6" prefWidth="180.0" text="DERBY DELLA CAPITALE 2019" wrapText="true">
+                                            <font><Font name="Roboto Black Italic" size="20.0" /></font>
+                                        </Label>
+
+                                        <!-- Escudo Local -->
+                                        <ImageView fx:id="imgLocal_6" fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                            <image><Image url="@imagenes/Lazio-logo.png" /></image>
+                                        </ImageView>
+
+                                        <!-- Equipo Local + Botón 1 -->
+                                        <VBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label fx:id="lblLocal_6" text="Lazio"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
+                                                <Button fx:id="btn_6_1" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="1">
+                                                    <font><Font name="Roboto Black" size="19.0" /></font>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- VS + Botón X -->
+                                        <VBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label text="vs."><font><Font name="Roboto Regular" size="19.0" /></font></Label>
+                                                <Button fx:id="btn_6_X" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="X">
+                                                    <font><Font name="Roboto Black" size="19.0" /></font>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Equipo Visitante + Botón 2 -->
+                                        <VBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <Label fx:id="lblVisit_6" text="Roma"><font><Font name="Roboto Regular" size="19.0" /></font></Label>
+                                                <Button fx:id="btn_6_2" mnemonicParsing="false" onAction="#registrarApuesta" prefHeight="36.0" prefWidth="64.0" styleClass="boton-apuesta" stylesheets="@css/styles.css" text="2">
+                                                    <font><Font name="Roboto Black" size="19.0" /></font>
+                                                </Button>
+                                            </children>
+                                        </VBox>
+
+                                        <!-- Escudo Visitante -->
+                                        <ImageView fx:id="imgVisit_6" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                            <image><Image url="@imagenes/104.png" /></image>
+                                        </ImageView>
+                                    </children>
+                                </HBox>
 
                             </children>
                         </AnchorPane>
+
+                        <!-- PANEL DERECHO: LEADERBOARD Y BOTONES -->
                         <AnchorPane prefHeight="599.0" prefWidth="419.0">
                             <children>
                                 <ImageView fitHeight="443.0" fitWidth="363.0" layoutX="48.0" layoutY="10.0" pickOnBounds="true">
@@ -231,7 +247,7 @@
                                         <Image url="@imagenes/marcoLeaderboard.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="btn_enviar_apuesta" layoutX="104.0" layoutY="492.0" mnemonicParsing="false" onAction="#procesarApuesta" prefHeight="73.0" prefWidth="251.0" styleClass="boton-enviar" stylesheets="@css/styles.css" text="INVIA SCOMMESSA">
+                                <Button fx:id="btn_enviar_apuesta" layoutX="92.0" layoutY="491.0" mnemonicParsing="false" onAction="#procesarApuesta" prefHeight="74.0" prefWidth="277.0" styleClass="boton-enviar" stylesheets="@css/styles.css" text="INVIA SCOMMESSA">
                                     <font>
                                         <Font name="Roboto Black" size="18.0" />
                                     </font></Button>
@@ -241,9 +257,9 @@
                                         <Font name="Roboto Black" size="19.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="btnSiguienteJugador" layoutX="104.0" layoutY="494.0" mnemonicParsing="false" onAction="#accionSiguienteJugador" prefHeight="73.0" prefWidth="251.0" styleClass="boton-enviar" stylesheets="@css/styles.css" text="PROSSIMO GIOCATORE" visible="false">
+                                <Button fx:id="btnSiguienteJugador" layoutX="91.0" layoutY="491.0" mnemonicParsing="false" onAction="#accionSiguienteJugador" prefHeight="74.0" prefWidth="277.0" styleClass="boton-enviar" stylesheets="@css/styles.css" text="PROSSIMO GIOCATORE" visible="false">
                                     <font>
-                                        <Font name="Roboto Black" size="18.0" />
+                                        <Font name="Roboto Black" size="10.0" />
                                     </font>
                                 </Button>
                             </children>
@@ -251,6 +267,7 @@
                     </children>
                 </HBox>
 
+                <!-- TEXTOS SUPERIORES DE INSTRUCCIONES Y NÚMERO DE CONCURSO -->
                 <Label fx:id="lblConcorso" alignment="CENTER" layoutX="27.0" layoutY="39.0" prefWidth="100.0" text="999" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="48.0" />
@@ -266,11 +283,18 @@
                         <Font name="Roboto Black" size="17.0" />
                     </font>
                 </Label>
+                <Label layoutX="74.0" layoutY="156.0" text="1 = Vittoria Casa | X = Rigori | 2 = Vittoria Trasferta">
+                    <font>
+                        <Font name="Roboto Black" size="17.0" />
+                    </font>
+                </Label>
             </children>
             <StackPane.margin>
                 <Insets />
             </StackPane.margin>
         </AnchorPane>
+
+        <!-- PANTALLA DE CARGA / INICIO -->
         <AnchorPane fx:id="idPantallaCarga" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #2a5f90;" visible="false">
             <children>
                 <ImageView fitHeight="424.0" fitWidth="678.0" layoutX="305.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
@@ -288,12 +312,14 @@
                         <Image url="@imagenes/totoCalcioPantallaCarga.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="402.0" layoutY="198.0" text="DIVERTITI E FAI LA TUA MIGLIORE GIOCATA" textFill="WHITE">
+                <Label layoutX="368.0" layoutY="204.0" text="DIVERTITI E FAI LA TUA MIGLIORE GIOCATA" textFill="WHITE">
                     <font>
                         <Font name="Roboto Black" size="28.0" />
                     </font>
                 </Label>
             </children></AnchorPane>
+
+        <!-- NOTIFICACIONES TOAST -->
         <HBox fx:id="panelNotificacion" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="60.0" prefWidth="500.0" styleClass="notificacion" stylesheets="@css/styles.css" visible="false" StackPane.alignment="TOP_CENTER">
             <children>
                 <Label fx:id="lblNotificacion" styleClass="notificacion" stylesheets="@css/styles.css" text="Messaggio di prova" textFill="WHITE">

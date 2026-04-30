@@ -1,8 +1,7 @@
 package utilities;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que facilita la conexión a la base de datos.
@@ -24,7 +23,6 @@ public class ConexionBD {
      * @param puntos
      */
     public static void guardarParticipante(String nombre, int puntos){
-        // En Postgres, llamar a una función con SELECT está perfecto
         String query = "SELECT fn_guardarParticipante(?, ?)";
         try (Connection conn = conectar();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -32,7 +30,6 @@ public class ConexionBD {
             pstmt.setString(1, nombre);
             pstmt.setInt(2, puntos);
 
-            // CAMBIO AQUÍ: Usamos execute() en lugar de executeUpdate()
             pstmt.execute();
 
         } catch (SQLException e) {
@@ -51,7 +48,6 @@ public class ConexionBD {
              java.sql.ResultSet rs = stmt.executeQuery(query)) {
 
             if (rs.next()) {
-                // CAMBIO AQUÍ: Pedimos la columna 1 en lugar del nombre
                 return rs.getInt(1);
             }
 
@@ -61,5 +57,61 @@ public class ConexionBD {
 
         return 1;
     }
-//Comando para reiniciar los datos de la base, usar en pgAdmin: TRUNCATE TABLE participante RESTART IDENTITY;
+    public static List<Partido> obtenerPartidos() {
+        List<Partido> listaPartidos = new ArrayList<>();
+
+        // Llamamos a la función de PostgreSQL
+        String query = "SELECT * FROM fn_extraerPartidos()";
+
+        try (Connection conn = conectar();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            // Iteramos sobre todos los partidos que nos devuelva la base de datos
+            while (rs.next()) {
+                String equipoLocal = rs.getString("equipo_local");
+                String equipoVisitante = rs.getString("equipo_visitante");
+                String rutaBanderaLocal = rs.getString("ruta_bandera_local");
+                String rutaBanderaVisitante = rs.getString("ruta_bandera_visitante");
+                String resultadoReal = rs.getString("resultado_real");
+                String nombreMundial = rs.getString("nombre_mundial");
+
+                // Creamos el objeto Partido y lo metemos a nuestra lista
+                Partido partido = new Partido(
+                        equipoLocal,
+                        equipoVisitante,
+                        rutaBanderaLocal,
+                        rutaBanderaVisitante,
+                        resultadoReal,
+                        nombreMundial
+                );
+
+                listaPartidos.add(partido);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al extraer los partidos de la BD: " + e.getMessage());
+        }
+        return listaPartidos;
+    }
+    public static Partido obtenerPartidosBonus() {
+        Partido bonus = null;
+        String query = "SELECT * FROM fn_extraerBonus()";
+
+        try (Connection conn = conectar();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                bonus = new Partido(rs.getString("equipo_local"), rs.getString("equipo_visitante"),
+                        rs.getString("ruta_bandera_local"), rs.getString("ruta_bandera_visitante"),
+                        rs.getString("resultado_real"), rs.getString("titulo_partido"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error bonus: " + e.getMessage());
+        }
+        return bonus;
+    }
+
+
+//Comando para reiniciar los datos de la base, usar en consola SQL: TRUNCATE TABLE participante RESTART IDENTITY;
 }
