@@ -473,7 +473,7 @@ private void limpiarBotonesDeLaFila(int fila){
                         jugador2.getNombre() + " (" + jugador2.getPuntos() + " pts)\n" +
                         "ha sconfitto a " + jugador1.getNombre() + " (" + jugador1.getPuntos() + " pts)!";
             } else {
-                mensajeDuelo = "🤝 PAREGGIO! (Empate)\n\nEntrambi hanno totalizzato " + jugador1.getPuntos() + " pts. Bel duello!";
+                mensajeDuelo = "🤝 PAREGGIO! \n\nEntrambi hanno totalizzato " + jugador1.getPuntos() + " pts. Bel duello!";
             }
 
             // Mostramos el Pop-up oficial
