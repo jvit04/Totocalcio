@@ -1,12 +1,10 @@
 package controller;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +15,7 @@ import javafx.util.Duration;
 import utilities.*;
 import javafx.stage.Stage;
 import javax.swing.*;
-
+import javafx.scene.media.AudioClip;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -137,7 +135,11 @@ public class TotocalcioController {
     private Button btn_enviar_apuesta;
     @FXML
     private Label lblConcorso;
-
+    // === EFECTOS DE SONIDO ===
+    private AudioClip sonidoSilbato;
+    private AudioClip sonidoPerfecto;
+    private AudioClip sonidoVincitore;
+    private AudioClip sonidoPareggio;
     /**
      * Metodo para inicializar la aplicación
      */
@@ -156,7 +158,15 @@ public class TotocalcioController {
         idPantallaCarga.setVisible(true);
         numeroConcursoActual = ConexionBD.obtenerSiguienteConcurso();
         lblConcorso.setText(String.valueOf(numeroConcursoActual));
-
+// Cargar sonidos
+        try {
+            sonidoSilbato = new AudioClip(getClass().getResource("/audios/silbato_inicio.mp3").toExternalForm());
+            sonidoPerfecto = new AudioClip(getClass().getResource("/audios/perfetto.mp3").toExternalForm());
+            sonidoVincitore = new AudioClip(getClass().getResource("/audios/vincitore.mp3").toExternalForm());
+            sonidoPareggio = new AudioClip(getClass().getResource("/audios/pareggio.mp3").toExternalForm());
+        } catch (Exception e) {
+            System.out.println("Error cargando sonidos: " + e.getMessage());
+        }
     }
     public void llenarTablero() {
         // Limpiamos la memoria de la partida anterior
@@ -329,6 +339,7 @@ private void limpiarBotonesDeLaFila(int fila){
      */
     @FXML
     void ocultarPantalla(ActionEvent event) {
+        if (sonidoSilbato != null) sonidoSilbato.play(); // ¡Piiiiip!
         idPantallaCarga.setVisible(false);
     }
 
@@ -375,16 +386,83 @@ private void limpiarBotonesDeLaFila(int fila){
                 "Punteggio: " + puntosObtenidos + " pts.\n\n" +
                 "Grazie per aver partecipato al Totocalcio!";
 
-        Alert alertaResumen = new Alert(AlertType.INFORMATION);
+        Alert alertaResumen = new Alert(Alert.AlertType.INFORMATION);
         alertaResumen.setTitle("Risultato della Giocata");
-        alertaResumen.setHeaderText("Scommessa Inviata con Successo!");
-        alertaResumen.setContentText(mensajeResumen);
 
-        // Mantenemos la pantalla completa intacta
+        // Eliminamos el encabezado y el logo por defecto para centrar todo
+        alertaResumen.setHeaderText(null);
+        alertaResumen.setGraphic(null);
+
+        // --- CONTENEDOR PRINCIPAL ---
+        VBox contenedorPrincipal = new VBox(0); // Sin espacio entre el header y el body
+        contenedorPrincipal.setAlignment(javafx.geometry.Pos.CENTER);
+        contenedorPrincipal.setStyle("-fx-background-color: #f4f4f4; -fx-background-radius: 10; -fx-overflow: hidden;");
+
+        // --- NUEVO ENCABEZADO PERSONALIZADO (Azul con letras blancas) ---
+        HBox headerPersonalizado = new HBox();
+        headerPersonalizado.setAlignment(javafx.geometry.Pos.CENTER);
+        headerPersonalizado.setPadding(new javafx.geometry.Insets(15, 20, 15, 20));
+        headerPersonalizado.setStyle("-fx-background-color: #19436a; -fx-background-radius: 10 10 0 0;");
+        headerPersonalizado.setPrefWidth(450);
+
+        Label lblTituloBlanco = new Label("SCOMMESSA INVIATA CON SUCCESSO");
+        lblTituloBlanco.setStyle("-fx-font-family: 'Roboto Black'; -fx-font-size: 18px; -fx-text-fill: white; -fx-font-weight: bold;");
+        headerPersonalizado.getChildren().add(lblTituloBlanco);
+
+        // --- CUERPO DE LA ALERTA (Contenido centrado) ---
+        VBox cuerpoAlerta = new VBox(15);
+        cuerpoAlerta.setAlignment(javafx.geometry.Pos.CENTER);
+        cuerpoAlerta.setPadding(new javafx.geometry.Insets(25));
+
+        if (puntosObtenidos == 37) {
+            try {
+                // GIF de Puntaje Perfecto (Nombre actualizado)
+                ImageView gifCiao = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/Punteggio_perfetto.gif")));
+                gifCiao.setFitWidth(320);
+                gifCiao.setPreserveRatio(true);
+
+                Label lblPuntosPerfectos = new Label("PUNTEGGIO PERFETTO: " + puntosObtenidos + " pts");
+                lblPuntosPerfectos.setStyle("-fx-font-size: 26px; -fx-font-family: 'Roboto Black'; -fx-text-fill: #d4af37; -fx-font-weight: bold;");
+
+                Label lblUserPerfecto = new Label("Giocatore: " + nombreJugador);
+                lblUserPerfecto.setStyle("-fx-font-size: 20px; -fx-font-family: 'Roboto'; -fx-text-fill: #19436a;");
+
+                cuerpoAlerta.getChildren().addAll(gifCiao, lblPuntosPerfectos, lblUserPerfecto);
+
+                if (sonidoPerfecto != null) sonidoPerfecto.play();
+            } catch (Exception e) {
+                System.out.println("Error al cargar Punteggio_perfetto.gif: " + e.getMessage());
+            }
+        } else {
+            // Caso Normal: Puntaje gigante y Usuario debajo
+            Label lblPuntosGrandes = new Label(puntosObtenidos + " pts");
+            lblPuntosGrandes.setStyle("-fx-font-size: 60px; -fx-font-family: 'Roboto Black'; -fx-text-fill: #19436a; -fx-font-weight: bold;");
+
+            Label lblUsuarioSub = new Label("Giocatore: " + nombreJugador);
+            lblUsuarioSub.setStyle("-fx-font-size: 24px; -fx-font-family: 'Roboto'; -fx-text-fill: #444444;");
+
+            Label lblClasifica = new Label("Sei in classifica! Controlla la tua posizione.");
+            lblClasifica.setStyle("-fx-font-size: 15px; -fx-text-fill: #19436a; -fx-font-style: italic;");
+
+            cuerpoAlerta.getChildren().addAll(lblPuntosGrandes, lblUsuarioSub, lblClasifica);
+        }
+
+        // Unimos el encabezado y el cuerpo
+        contenedorPrincipal.getChildren().addAll(headerPersonalizado, cuerpoAlerta);
+
+        // Inyectamos el contenedor en la alerta
+        DialogPane dialogPane = alertaResumen.getDialogPane();
+        dialogPane.setContent(contenedorPrincipal);
+        dialogPane.setStyle("-fx-background-color: transparent;"); // Quitamos el fondo gris de la ventana
+
+        // Botón OK estilizado
+        Button botonOk = (Button) dialogPane.lookupButton(ButtonType.OK);
+        if (botonOk != null) {
+            botonOk.setStyle("-fx-background-color: #19436a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30 10 30;");
+        }
+
         Stage stagePrincipal = (Stage) idPanelJuego.getScene().getWindow();
         alertaResumen.initOwner(stagePrincipal);
-
-        // Mostramos el resumen al jugador
         alertaResumen.showAndWait();
 
         // Verificamos si es el final de una ronda de 2 jugadores
@@ -455,35 +533,78 @@ private void limpiarBotonesDeLaFila(int fila){
     private void evaluarDuelo() {
         List<Participante> ultimos = ConexionBD.obtenerUltimosDosParticipantes();
 
-        // Nos aseguramos de que realmente haya dos jugadores para comparar
         if (ultimos.size() == 2) {
-            // Nota: Como la consulta es DESC (Descendente), el índice 0 es el último que jugó, y el 1 es el anterior.
-            Participante jugador2 = ultimos.get(0);
-            Participante jugador1 = ultimos.get(1);
+            Participante jugador2 = ultimos.get(0); // Último en jugar (ID Par)
+            Participante jugador1 = ultimos.get(1); // Jugador anterior (ID Impar)
 
-            String mensajeDuelo;
+            // 1. Configuración de la Alerta
+            Alert alertaDuelo = new Alert(Alert.AlertType.INFORMATION);
+            alertaDuelo.setTitle("RISULTATO DEL DUELLO");
+            alertaDuelo.setHeaderText(null);
+            alertaDuelo.setGraphic(null);
 
-            // Lógica para ver quién tiene más puntos
+            // --- CONTENEDOR PRINCIPAL ---
+            VBox contenedorPrincipal = new VBox(0);
+            contenedorPrincipal.setAlignment(javafx.geometry.Pos.CENTER);
+            contenedorPrincipal.setStyle("-fx-background-color: #f4f4f4; -fx-background-radius: 10;");
+
+            // --- CABECERA AZUL (Sincronizada con el resto de la app) ---
+            HBox headerDuelo = new HBox();
+            headerDuelo.setAlignment(javafx.geometry.Pos.CENTER);
+            headerDuelo.setPadding(new javafx.geometry.Insets(15, 20, 15, 20));
+            headerDuelo.setStyle("-fx-background-color: #19436a; -fx-background-radius: 10 10 0 0;");
+            headerDuelo.setPrefWidth(500);
+
+            Label lblTituloHeader = new Label("FINE DEL DUELLO: 1 vs 1");
+            lblTituloHeader.setStyle("-fx-font-family: 'Roboto Black'; -fx-font-size: 18px; -fx-text-fill: white; -fx-font-weight: bold;");
+            headerDuelo.getChildren().add(lblTituloHeader);
+
+            // --- CUERPO DEL DUELO ---
+            VBox cuerpoDuelo = new VBox(20);
+            cuerpoDuelo.setAlignment(javafx.geometry.Pos.CENTER);
+            cuerpoDuelo.setPadding(new javafx.geometry.Insets(30));
+
+            Label lblGanador = new Label();
+            Label lblDetalle = new Label();
+
+            // Lógica de comparación y asignación de sonidos
             if (jugador1.getPuntos() > jugador2.getPuntos()) {
-                mensajeDuelo = "🏆 VINCITORE DEL DUELLO:\n\n" +
-                        jugador1.getNombre() + " (" + jugador1.getPuntos() + " pts)\n" +
-                        "ha sconfitto a " + jugador2.getNombre() + " (" + jugador2.getPuntos() + " pts)!";
+                lblGanador.setText("🏆 " + jugador1.getNombre().toUpperCase());
+                lblDetalle.setText("Ha vinto con " + jugador1.getPuntos() + " pts contro i " + jugador2.getPuntos() + " di " + jugador2.getNombre());
+                if (sonidoVincitore != null) sonidoVincitore.play();
             } else if (jugador2.getPuntos() > jugador1.getPuntos()) {
-                mensajeDuelo = "🏆 VINCITORE DEL DUELLO:\n\n" +
-                        jugador2.getNombre() + " (" + jugador2.getPuntos() + " pts)\n" +
-                        "ha sconfitto a " + jugador1.getNombre() + " (" + jugador1.getPuntos() + " pts)!";
+                lblGanador.setText("🏆 " + jugador2.getNombre().toUpperCase());
+                lblDetalle.setText("Ha vinto con " + jugador2.getPuntos() + " pts contro i " + jugador1.getPuntos() + " di " + jugador1.getNombre());
+                if (sonidoVincitore != null) sonidoVincitore.play();
             } else {
-                mensajeDuelo = "🤝 PAREGGIO! \n\nEntrambi hanno totalizzato " + jugador1.getPuntos() + " pts. Bel duello!";
+                lblGanador.setText("🤝 PAREGGIO!");
+                lblDetalle.setText("Entrambi i giocatori hanno totalizzato " + jugador1.getPuntos() + " pts.");
+                if (sonidoPareggio != null) sonidoPareggio.play();
             }
 
-            // Mostramos el Pop-up oficial
-            Alert alerta = new Alert(AlertType.INFORMATION);
-            alerta.setTitle("RISULTATO DEL DUELLO");
-            alerta.setHeaderText("Abbiamo un risultato!");
-            alerta.setContentText(mensajeDuelo);
+            // Estilos para los textos del cuerpo
+            lblGanador.setStyle("-fx-font-size: 32px; -fx-font-family: 'Roboto Black'; -fx-text-fill: #19436a; -fx-font-weight: bold;");
+            lblDetalle.setStyle("-fx-font-size: 18px; -fx-font-family: 'Roboto'; -fx-text-fill: #444444; -fx-text-alignment: center;");
+            lblDetalle.setWrapText(true);
+
+            cuerpoDuelo.getChildren().addAll(lblGanador, lblDetalle);
+            contenedorPrincipal.getChildren().addAll(headerDuelo, cuerpoDuelo);
+
+            // Inyectar en el DialogPane
+            DialogPane dialogPane = alertaDuelo.getDialogPane();
+            dialogPane.setContent(contenedorPrincipal);
+            dialogPane.setStyle("-fx-background-color: transparent;");
+
+            // Estilo del botón OK
+            Button botonOk = (Button) dialogPane.lookupButton(ButtonType.OK);
+            if (botonOk != null) {
+                botonOk.setStyle("-fx-background-color: #19436a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 30 10 30;");
+            }
+
+            // Mantener Full Screen y mostrar
             Stage stagePrincipal = (Stage) idPanelJuego.getScene().getWindow();
-            alerta.initOwner(stagePrincipal); // Pausa la app hasta que cierren la ventana
-            alerta.showAndWait();
+            alertaDuelo.initOwner(stagePrincipal);
+            alertaDuelo.showAndWait();
         }
     }
     @FXML
